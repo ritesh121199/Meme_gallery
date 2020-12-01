@@ -16,7 +16,7 @@ export default function Home({ memes }) {
   );
 }
 
-export const getServerSideProps = async () => {
+Home.getInitialProps = async () => {
   const result = await fetch("https://reddit.com/r/memes.json?limit=1000");
   const resj = await result.json();
   const memes = resj.data.children
@@ -33,5 +33,5 @@ export const getServerSideProps = async () => {
         title: meme.title,
       };
     });
-  return { props: { memes } };
+  return {memes};
 };
